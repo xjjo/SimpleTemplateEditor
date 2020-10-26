@@ -1,0 +1,375 @@
+<html>
+ <header>
+	<link type="text/css" rel="stylesheet" href="css/common.css">
+	<script type="text/javascript" src="js/common.js"></script>
+	<style>
+	</style>
+ </header>
+ <body>
+	<!-- menu izquierdo -->
+	<div class="black-background no-print"></div>
+	<div class="leftbar no-print">
+		<div style="padding-left: 30px">		
+			<div id="edit-page"></div>
+		</div>
+	</div>
+	<!-- menu principal-->
+	<div class="menu no-print">		
+		<input type="checkbox" id="allow-move"  onclick="allowDrag(document.getElementById('allow-move').checked)">Move widgets
+		<a href="javascript:menuActionNewPageElement()"><div class="btn">Add widget</div></a>
+		<a href="javascript:menuActionEditPage()"><div class="btn">Edit page</div></a>
+		<a href="javascript:menuActionNewPage()"><div class="btn">New page</div></a>	
+		<a href="javascript:menuActionDeletPage()"><div class="btn">Delete page</div></a>								
+		<a href="javascript:menuActionPrintDocument()"><div class="btn">Print</div></a>
+		<a href="javascript:menuActionHelp()"><div class="btn">Help</div></a>		
+	</div>
+	<!-- error msg -->
+	<div class="error no-print" id="error"></div>
+	<div class="success no-print" id="success"></div>
+	<!-- pagina 1 -->
+	<div class="page" id="page1" onclick="selectPage(event)">
+		<!-- elemento 1 -->
+		<div class="widget1" id="component-p1-e1" draggable="false">
+			<div class="line1 pointer-event-none">naturally</div>
+			<div class="line2 pointer-event-none">grown</div>
+		</div>
+		<!-- elemento 2 -->
+		<div class="widget2"  id="component-p1-e2" draggable="false" >
+			<div class="page-title pointer-event-none" id="e2-s1" widgetElementId="1" >
+				Healthy Food 				
+			</div>
+			<div class="page-subtitle pointer-event-none" id="e2-s2" widgetElementId="2">
+				Best quick recipes
+			</div>
+			<div id="config" class="no-display">
+				{ 		"pageElementId": "component-p1-e2",			
+						"elements" : [
+							{"id": "e2-s1", "widgetElementId":"1", "type": "text", "label": "Titulo:"},
+							{"id": "e2-s2", "widgetElementId":"2", "type": "text", "label": "Subtitulo:"}
+					] 
+				}
+			</div>
+		</div>
+		<!-- elemento 3 -->
+		<div class="widget3" id="component-p1-e3" draggable="false">
+			<div class="linea pointer-event-none" id="e3-s1" widgetElementId="1" >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</div>						
+			<div id="config" class="no-display">
+				{ 		"pageElementId": "component-p1-e3",			
+						"elements" : [
+							{"id": "e3-s1", "widgetElementId":"1", "type": "textarea", "label": "Texto principal:"}							
+					] 
+				}
+			</div>
+		</div>
+		<!-- elemento 4 -->
+		<div class="widget4" id="component-p1-e4" draggable="false">
+			<span class="instagram-logo pointer-event-none"></span>
+			<span class="instagram-username pointer-event-none" id="e4-s1" widgetElementId="1" >green-food</span>
+			<div id="config" class="no-display">
+				{ 		"pageElementId": "component-p1-e4",			
+						"elements" : [
+							{"id": "e4-s1", "widgetElementId":"1",  "type": "text", "label": "Instagram:"}							
+					] 
+				}
+			</div>
+		</div>
+		<!-- elemento 5 -->
+		<div class="widget5" id="component-p1-e5" draggable="false"></div>
+		<!-- elemento 6 -->
+		<div class="widget6"  id="component-p1-e6" draggable="false"></div>
+		<!-- elemento 7 -->
+		<div class="widget7" id="component-p1-e7" draggable="false"></div>
+	</div>
+	
+	<!-- 
+	<div class="divider no-print"></div>
+	-->
+
+	<!-- Repositorio de elementos -->
+	<div class="page no-display no-print" id="widget-repository">
+		<!-- widget 1 -->
+		<div class="widget1" widgetId="1" draggable="false">
+			<div class="line1 pointer-event-none" widgetElementId="1">naturally</div>
+			<div class="line2 pointer-event-none" widgetElementId="2">grown</div>
+			<div id="config" class="no-display">
+				{ 		
+						"widgetId" : "1",	
+						"name":"Logo",
+						"description": "Logo de hojas",
+						"pageElementId": "",
+						"thumbnail":"img/thumbnail/1.png",			
+						"elements" : [
+							{"id": "", "widgetElementId":"1", "widgetElementType":"div", "type": "text", "label": "Logo linea 1:"},
+							{"id": "", "widgetElementId":"2", "widgetElementType":"div", "type": "text", "label": "Logo linea 2:"}
+						] 
+				}
+			</div>
+		</div>
+		<!-- widget 2 -->
+		<div class="widget2" widgetId="2" draggable="false" >
+			<div class="page-title pointer-event-none" id="" widgetElementId="1" >
+				Healthy Food 				
+			</div>
+			<div class="page-subtitle pointer-event-none" id="" widgetElementId="2">
+				Best quick recipes
+			</div>
+			<div id="config" class="no-display">
+				{ 		
+						"widgetId" : "2",	
+						"name":"Titulo y Subtitulo",
+						"description": "Titulo y subtitulo con fondo de marcador",
+						"pageElementId": "",
+						"thumbnail":"img/thumbnail/2.png",			
+						"elements" : [
+							{"id": "", "widgetElementId":"1", "widgetElementType":"div", "type": "text", "label": "Titulo:"},
+							{"id": "", "widgetElementId":"2", "widgetElementType":"div", "type": "text", "label": "Subtitulo:"}
+					] 
+				}
+			</div>
+		</div>
+		<!-- widget 3 -->
+		<div class="widget3" widgetId="3" draggable="false">
+			<div class="linea pointer-event-none" widgetElementId="1" >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</div>						
+			<div id="config" class="no-display">
+				{ 			
+						"widgetId" : "3",	
+						"name":"Texto",
+						"description": "Texto centrado - angosto",
+						"pageElementId": "",
+						"thumbnail":"img/thumbnail/3.png",			
+						"elements" : [
+							{"id": "", "widgetElementId":"1", "widgetElementType":"div", "type": "textarea", "label": "Texto principal:"}							
+					] 
+				}
+			</div>
+		</div>
+		<!-- widget 3 -->
+		<div class="widget9" widgetId="9" draggable="false">
+			<div class="linea pointer-event-none" widgetElementId="1" >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</div>						
+			<div id="config" class="no-display">
+				{ 			
+						"widgetId" : "9",	
+						"name":"Texto",
+						"description": "Texto centrado - Largo",
+						"pageElementId": "",
+						"thumbnail":"img/thumbnail/9.png",			
+						"elements" : [
+							{"id": "", "widgetElementId":"1", "widgetElementType":"div", "type": "textarea", "label": "Texto principal:"}							
+					] 
+				}
+			</div>
+		</div>
+		<!-- widget 4 -->
+		<div class="widget4" widgetId="4" draggable="false">
+			<span class="instagram-logo pointer-event-none"></span>
+			<span class="instagram-username pointer-event-none" widgetElementId="1" >green-food</span>
+			<div id="config" class="no-display">
+				{ 		
+						"widgetId" : "4",		
+						"name":"Instagram",
+						"description": "Logo de instagram con etiqueta a la derecha",
+						"pageElementId": "",	
+						"thumbnail":"img/thumbnail/4.png",		
+						"elements" : [
+							{"id": "", "widgetElementId":"1", "widgetElementType":"span", "type": "text", "label": "Instagram:"}							
+					] 
+				}
+			</div>
+		</div>
+		<!-- widget 5 -->
+		<div class="widget5" widgetId="5" draggable="false">
+			<div id="config" class="no-display">
+				{ 		
+						"widgetId" : "5",	
+						"name":"Fondo",
+						"description": "Fondo para corner superior derecho",
+						"pageElementId": "",	
+						"thumbnail":"img/thumbnail/5.png",		
+						"elements" : [] 
+				}
+			</div>
+		</div>
+		<!-- widget 6 -->
+		<div class="widget6" widgetId="6" draggable="false">
+			<div id="config" class="no-display">
+				{ 		
+						"widgetId" : "6",	
+						"name":"Fondo",
+						"description": "Fondo para corner inferior izquierdo",
+						"pageElementId": "",	
+						"thumbnail":"img/thumbnail/6.png",		
+						"elements" : [] 
+				}
+			</div>
+		</div>
+		<!-- widget 7 -->
+		<div class="widget7" widgetId="7" draggable="false">
+			<div id="config" class="no-display">
+				{ 		
+						"widgetId" : "7",
+						"name":"Imagen",
+						"description": "Imagen de muchacha - perfil izquierdo",
+						"pageElementId": "",
+						"thumbnail":"img/thumbnail/7.png",			
+						"elements" : [] 
+				}
+			</div>
+			<!-- widget 8 -->
+			<div class="widget8" widgetId="8" draggable="false">
+			<div id="config" class="no-display">
+				{ 		
+						"widgetId" : "8",
+						"name":"Imagen",
+						"description": "Canasta de verduras",
+						"pageElementId": "",
+						"thumbnail":"img/thumbnail/8.png",			
+						"elements" : [] 
+				}
+			</div>
+		</div>
+		<!-- widget 10 -->
+		<div class="widget10" widgetId="10" draggable="false">
+			<div id="config" class="no-display">
+				{ 		
+						"widgetId" : "10",
+						"name":"Imagen",
+						"description": "Plato en forma de corazon",
+						"pageElementId": "",
+						"thumbnail":"img/thumbnail/10.png",			
+						"elements" : [] 
+				}
+			</div>
+		</div>
+		<!-- widget 11 -->
+		<div class="widget11" widgetId="11" draggable="false">
+			<div id="config" class="no-display">
+				{ 		
+						"widgetId" : "11",
+						"name":"Imagen",
+						"description": "Plato redondo - vegetales fescos",
+						"pageElementId": "",
+						"thumbnail":"img/thumbnail/11.png",			
+						"elements" : [] 
+				}
+			</div>
+		</div>
+		<!-- widget 12 -->
+		<div class="widget12" widgetId="12" draggable="false">
+			<div id="config" class="no-display">
+				{ 		
+						"widgetId" : "12",
+						"name":"Imagen",
+						"description": "Imagen lagteral izquierda",
+						"pageElementId": "",
+						"thumbnail":"img/thumbnail/12.png",			
+						"elements" : [] 
+				}
+			</div>
+		</div>
+		<!-- widget 13 -->
+		<div class="widget13" widgetId="13" draggable="false">
+			<div id="config" class="no-display">
+				{ 		
+						"widgetId" : "13",
+						"name":"Imagen",
+						"description": "Imagen lagteral izquierda",
+						"pageElementId": "",
+						"thumbnail":"img/thumbnail/13.png",			
+						"elements" : [] 
+				}
+			</div>
+		</div>
+		<!-- widget 14 -->
+		<div class="widget14" widgetId="14" draggable="false">
+			<div id="config" class="no-display">
+				{ 		
+						"widgetId" : "14",
+						"name":"Imagen",
+						"description": "Imagen de Fondo para corner superior izquierdo",
+						"pageElementId": "",
+						"thumbnail":"img/thumbnail/14.png",			
+						"elements" : [] 
+				}
+			</div>
+		</div>
+		<!-- widget 15 -->
+		<div class="widget15" widgetId="15" draggable="false">
+			<div id="config" class="no-display">
+				{ 		
+						"widgetId" : "15",
+						"name":"Imagen",
+						"description": "Imagen de Fondo - Muchacha fronatal",
+						"pageElementId": "",
+						"thumbnail":"img/thumbnail/15.png",			
+						"elements" : [] 
+				}
+			</div>
+		</div>
+		<!-- widget 16 -->
+		<div class="widget16" widgetId="16" draggable="false">
+			<div id="config" class="no-display">
+				{ 		
+						"widgetId" : "16",
+						"name":"Imagen",
+						"description": "Imagen de Fondo - Bolsa para perfil derecho, frutas y vegetales",
+						"pageElementId": "",
+						"thumbnail":"img/thumbnail/16.png",			
+						"elements" : [] 
+				}
+			</div>
+		</div>
+		<!-- widget 17 -->
+		<div class="widget17" widgetId="17" draggable="false">
+			<div id="config" class="no-display">
+				{ 		
+						"widgetId" : "17",
+						"name":"Imagen",
+						"description": "Imagen de Fondo - Bolasa carton para corner derecho, vegetales",
+						"pageElementId": "",
+						"thumbnail":"img/thumbnail/17.png",			
+						"elements" : [] 
+				}
+			</div>
+		</div>
+		<!-- widget 18 -->
+		<div class="widget18" widgetId="18" draggable="false">
+			<div id="config" class="no-display">
+				{ 		
+						"widgetId" : "18",
+						"name":"Imagen",
+						"description": "Imagen de Fondo - Plato corner superior derecho",
+						"pageElementId": "",
+						"thumbnail":"img/thumbnail/18.png",			
+						"elements" : [] 
+				}
+			</div>
+		</div>
+		<!-- widget 19 -->
+		<div class="widget19" widgetId="19" draggable="false">
+			<div id="config" class="no-display">
+				{ 		
+						"widgetId" : "19",
+						"name":"Imagen",
+						"description": "Hojas laterales",
+						"pageElementId": "",
+						"thumbnail":"img/thumbnail/19.png",			
+						"elements" : [] 
+				}
+			</div>
+		</div>
+		<!-- widget 18 -->
+		<div class="widget20" widgetId="20" draggable="false">
+			<div id="config" class="no-display">
+				{ 		
+						"widgetId" : "20",
+						"name":"Imagen",
+						"description": "Vegetales en borde inferior derecho",
+						"pageElementId": "",
+						"thumbnail":"img/thumbnail/20.png",			
+						"elements" : [] 
+				}
+			</div>
+		</div>
+	</div>
+ </body>
+</html>
